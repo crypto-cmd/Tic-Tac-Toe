@@ -1,14 +1,14 @@
-/* Add CSS styles here! */
+/* build/index.css */
 :root {
-    --bg-color: hsl(120, 70%, 80%, 1);
+  --bg-color: hsl(120, 70%, 80%, 1);
 }
 body {
-    font-family: "Cascadia Code";
+  font-family: "Cascadia Code";
 }
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
