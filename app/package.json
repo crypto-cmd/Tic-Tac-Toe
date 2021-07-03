@@ -4,8 +4,6 @@
     "name": "tic-tac-toe",
     "version": "0.0.1",
     "scripts": {
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d build/",
         "start": "snowpack dev",
         "build": "snowpack build"
     },
@@ -14,12 +12,13 @@
         "@snowpack/plugin-sass": "^1.4.0",
         "@types/react": "^17.0.8",
         "@types/react-dom": "^17.0.5",
-        "gh-pages": "^3.2.0",
-        "rollup": "^2.37.1",
-        "snowpack": "^3.3.7"
+        "snowpack": "^3.7.1"
     },
     "dependencies": {
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
-    }
+        "react-dom": "^17.0.2",
+        "socket.io-client": "^4.1.2"
+    },
+    "main": "index.js",
+    "license": "MIT"
 }

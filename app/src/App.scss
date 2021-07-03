@@ -1,0 +1,60 @@
+#app {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	flex-direction: column;
+	background-color: var(--bg-color);
+	.screen {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+    .intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom:30px;
+    }
+		h3 {
+			font-size: 3rem;
+		}
+		p {
+			font-size: 1.2rem;
+      margin-top:10px;
+		}
+		code {
+			width: fit-content;
+			padding: 5px 20px;
+			background-color: rgba(0, 0, 0, 0.404);
+			color: white;
+			font-family: inherit;
+			border-radius: 0.2rem;
+		}
+		input {
+			// Variables
+			--input-color: #99a3ba;
+			--input-border: #cdd9ed;
+			--input-background: #fff;
+			--input-border-focus: #275efe;
+			// SCSS
+			display: inline-block;
+			// width: 100%;
+			padding: 8px 16px;
+			line-height: 25px;
+			font-size: 14px;
+			font-weight: 500;
+			font-family: inherit;
+			border-radius: 6px;
+			color: var(--input-color);
+			border: 1px solid var(--input-border);
+			background: var(--input-background);
+			transition: border .3s ease;
+
+			&:focus {
+				outline: none;
+				border-color: var(--input-border-focus);
+			}
+		}
+	}
+}

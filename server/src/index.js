@@ -1,0 +1,44 @@
+const port = 8000;
+const { instrument } = require('@socket.io/admin-ui');
+const { v4: uuid, validate: is_uuid } = require('uuid');
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
+const app = express();
+const server = http.createServer(app);
+const origins = [ 'http://localhost:8080', 'http://localhost:8081', 'https://admin.socket.io/' ];
+const io = socketIO(server, {
+	cors: { origin: '*' }
+});
+
+io.on('connection', socket => {
+	console.log(`New User connected:${socket.id}`);
+	socket.on('move', data => {
+		const sids = io.of('/').adapter.sids;
+		const rooms = Array.from(sids.get(socket.id)).filter(room => is_uuid(room));
+		rooms.forEach(room => {
+			io.to(room).emit('update-lastmove', data);
+		});
+	});
+	socket.on('check-connection', async connection => {
+		const sockets = await io.allSockets();
+		const exists = sockets.has(connection);
+		console.log(`${connection} connection existence: ${exists}`);
+		io.to(socket.id).emit('connection-status', exists);
+	});
+	socket.on('add-player-to-room', async ({ nextPlayerId, roomId }) => {
+		if (!nextPlayerId) console.error(nextPlayerId + ' is undefined');
+
+		const room = roomId || uuid();
+		socket.join(room);
+		io.sockets.sockets.get(nextPlayerId).join(room);
+		io.to(socket.id).emit('added-to-room', room, 1);
+		io.to(nextPlayerId).emit('added-to-room', room, 2);
+	});
+	socket.on('disconnect', () => {
+		io.emit('removed-from-room');
+	});
+});
+
+server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
+instrument(io, { auth: false });

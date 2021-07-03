@@ -4,6 +4,7 @@
         "target": "esnext",
         "module": "esnext",
         "moduleResolution": "node",
+        "esModuleInterop": true,
         "baseUrl": "./",
         /* paths - import rewriting/resolving */
         "paths": {
