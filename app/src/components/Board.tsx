@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Square from './Square';
 import './Board.scss';
 import EventBlocker from './EventBlocker';
 import GlobalStateContext from './GlobalStateContext';
+import Square from './Square';
+
 interface WinnerType {
 	indices: Set<number>;
 	winner?: string;
@@ -69,23 +70,16 @@ const Board = ({ shouldRestart, setGameOver }: BoardProps) => {
 		const numEmptyTiles = tiles.filter(x => !!x).length;
 		return numEmptyTiles === 0 ? { indices: new Set<number>() } : null;
 	};
+	useEffect(() => setPlayer(isPlayerOne ? xPlayer : oPlayer), [ isPlayerOne ]);
+	useEffect(() => setTiles(tiles.map((value, i) => (i === lastMove.index ? lastMove.player : value))), [
+		player,
+		lastMove
+	]);
 	useEffect(
 		() => {
-			setPlayer(isPlayerOne ? xPlayer : oPlayer);
-			console.log(isPlayerOne);
-			console.log(player);
-		},
-		[ isPlayerOne ]
-	);
-	useEffect(
-		() => {
-			setTiles(tiles.map((value, i) => (i === lastMove.index ? lastMove.player : value)));
-		},
-		[ player, lastMove ]
-	);
-	useEffect(
-		() => {
-			socket.on('update-lastmove', ({ lastMove }: { lastMove: any }) => handleMove(lastMove, false));
+			socket.on('update-lastmove', ({ lastMove }: { lastMove: { index: number; player: string } }) =>
+				handleMove(lastMove, false)
+			);
 		},
 		[ socket ]
 	);
@@ -94,7 +88,6 @@ const Board = ({ shouldRestart, setGameOver }: BoardProps) => {
 			const winnerData = getWinner();
 			if (winnerData) {
 				setWinner(winnerData);
-				console.log('HERE: ' + winnerData);
 			}
 		},
 		[ tiles ]

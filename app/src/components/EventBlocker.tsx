@@ -1,6 +1,4 @@
 import React from "react";
 import "./EventBlocker.scss";
-const EventBlocker = () => {
-    return <div className="block"></div>;
-};
+const EventBlocker = () => <div className="block" />;
 export default EventBlocker;

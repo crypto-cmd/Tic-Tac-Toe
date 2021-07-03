@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Board from './Board';
 import Button from './Button';
-import GlobalStateContext from './GlobalStateContext';
 
 const PlayScreen = () => {
 	const [ restart, setRestart ] = useState(false);
-	// const { socket } = useContext(GlobalStateContext);
   const [isGameOver, setIsGameOver] = useState(false);
 	return (
 		<div className="PlayScreen screen">
@@ -18,7 +16,6 @@ const PlayScreen = () => {
 					setRestart(!restart);
 				}}
 			/>}
-			{/* <p>connection Id: {socket.id}</p> */}
 		</div>
 	);
 };

@@ -23,6 +23,11 @@
 			font-size: 1.2rem;
       margin-top:10px;
 		}
+    .instructions{
+      :nth-child(2){
+        margin-left:auto;
+      }
+    }
 		code {
 			width: fit-content;
 			padding: 5px 20px;
@@ -39,7 +44,6 @@
 			--input-border-focus: #275efe;
 			// SCSS
 			display: inline-block;
-			// width: 100%;
 			padding: 8px 16px;
 			line-height: 25px;
 			font-size: 14px;

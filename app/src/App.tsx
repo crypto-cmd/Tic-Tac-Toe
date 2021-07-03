@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-
+import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
 import GlobalStateContext, { globalState } from './components/GlobalStateContext';
 import PlayScreen from './components/PlayScreen';
 import SplashScreen from './components/SplashScreen';
+
 
 function App() {
 	const { socket } = useContext(GlobalStateContext);
