@@ -1,3 +1,5 @@
+const port = 8000;
+const { instrument } = require('@socket.io/admin-ui');
 const { v4: uuid, validate: is_uuid } = require('uuid');
 const app = require('express')();
 const server = require('http').createServer(app);
@@ -17,6 +19,7 @@ io.on('connection', socket => {
 	socket.on('check-connection', async connection => {
 		const sockets = await io.allSockets();
 		const exists = sockets.has(connection);
+		console.log(`${connection} connection existence: ${exists}`);
 		io.to(socket.id).emit('connection-status', exists);
 	});
 	socket.on('add-player-to-room', async ({ nextPlayerId, roomId }) => {
@@ -33,4 +36,5 @@ io.on('connection', socket => {
 	});
 });
 
-server.listen();
+server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
+instrument(io, { auth: false });
