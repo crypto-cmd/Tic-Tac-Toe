@@ -1,7 +1,0 @@
-{
-  "imports": {
-    "react": "./react.js",
-    "react-dom": "./react-dom.js",
-    "socket.io-client": "./socket.io-client.js"
-  }
-}
