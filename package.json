@@ -1,0 +1,12 @@
+{
+	"name": "tic-tact-toe",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/crypto-cmd/Tic-Tac-Toe.git",
+	"author": "Orville Daley <orvilledaley2004@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"predeploy": "cd app && yarn run build",
+		"deploy": "gh-pages -d build"
+	}
+}
