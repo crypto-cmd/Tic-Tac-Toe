@@ -4,7 +4,6 @@
 	"name": "tic-tac-toe",
 	"version": "0.0.1",
 	"scripts": {
-
 		"start": "snowpack dev",
 		"build": "snowpack build"
 	},
