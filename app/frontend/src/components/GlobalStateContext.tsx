@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { io } from "socket.io-client";
-const serverURL = "https://Tic-Tac-Toe-Server.orvilledaley.repl.co";
+const serverURL = "http://localhost:8000";
 export const globalState = {
   socket: io(serverURL),
   isPlayerOne: false,
