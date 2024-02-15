@@ -6,12 +6,14 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "build",
     "baseUrl": ".",
     "paths": {
       "@domain/*": ["src/domain/*"],
       "@application/*": ["src/application/*"],
       "@repository/*": ["src/repository/*"]
     }
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

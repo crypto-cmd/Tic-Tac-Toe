@@ -1,0 +1,9 @@
+services:
+  nginx:
+    build:
+      context: ./app/frontend
+    ports:
+      - "9001:9001"
+  express:
+    build:
+      context: ./app/server

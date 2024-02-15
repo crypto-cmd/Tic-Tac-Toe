@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./App.css";
+import "./App.scss";
 import GlobalStateContext, {
   globalState,
 } from "./components/GlobalStateContext";

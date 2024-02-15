@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+
 ReactDOM.render(<App></App>, document.getElementById("root"));
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.

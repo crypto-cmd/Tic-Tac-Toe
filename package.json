@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "predeploy": "cd app && yarn run build",
+    "build": "yarn workspaces run build",
     "deploy": "gh-pages -d build"
   },
   "workspaces": [

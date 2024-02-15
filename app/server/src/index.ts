@@ -5,9 +5,26 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import express from "express";
 const app = express();
+app.use("/health", (_, res) => {
+  const healthcheck = {
+    uptime: process.uptime(),
+    message: "OK",
+    timestamp: Date.now(),
+  };
+  res.send(healthcheck);
+});
+
+app.use("/info", (_, res) => {
+  const info = {
+    commit: process.env.GIT_COMMIT,
+  };
+  res.send(info);
+});
+
 const server = createServer(app);
 const io = new Server(server, {
   cors: { origin: "*" },
+  path: "/ws/",
 });
 
 io.on("connection", (socket) => {
