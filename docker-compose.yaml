@@ -1,9 +1,11 @@
 services:
   nginx:
+    image: duytung95nb/${serviceName}-nginx:${commit}
     build:
       context: ./app/frontend
     ports:
       - "9001:9001"
   express:
+    image: duytung95nb/${serviceName}:${commit}
     build:
       context: ./app/server
