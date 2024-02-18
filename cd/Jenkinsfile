@@ -19,9 +19,11 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'yarn && yarn build'
-                dockerBuild.login()
-                dockerBuild.build("tic-tac-toe")
-                dockerBuild.push("tic-tac-toe")
+                script {
+                    dockerBuild.login()
+                    dockerBuild.build("tic-tac-toe")
+                    dockerBuild.push("tic-tac-toe")
+                }
             }
         }
     }
