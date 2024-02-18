@@ -1,12 +1,6 @@
 @Library("shared-library") _
 
 pipeline {
-    agent {
-        docker {
-            image 'node:21.6.1'
-            args '-p 3000:3000'
-        }
-    }
     environment {
         CI = 'true'
     }
@@ -17,8 +11,18 @@ pipeline {
             }
         }
         stage('Build') {
+            agent {
+                docker {
+                    image 'node:21.6.1'
+                    args '-p 3000:3000'
+                }
+            }
             steps {
                 sh 'yarn && yarn build'
+            }
+        }
+        stage('Containerise') {
+            steps {
                 script {
                     dockerBuild.login()
                     dockerBuild.build("tic-tac-toe")
