@@ -1,0 +1,28 @@
+@Library("shared-library") _
+
+pipeline {
+    agent {
+        docker {
+            image 'node:lts-buster-slim'
+            args '-p 3000:3000'
+        }
+    }
+    environment {
+        CI = 'true'
+    }
+    stages {
+        stage('Init') {
+            steps {
+                helloWorld(dayOfWeek: "Thursday", name: "John")
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'yarn && yarn build'
+                dockerBuild.login()
+                dockerBuild.build("tic-tac-toe")
+                dockerBuild.push("tic-tac-toe")
+            }
+        }
+    }
+}
