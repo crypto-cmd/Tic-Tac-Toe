@@ -4,6 +4,7 @@ pipeline {
     agent any
     environment {
         CI = 'true'
+        PATH = "/usr/local/bin:/usr/bin:/bin:/sbin"
     }
     stages {
         stage('Init') {
@@ -25,9 +26,12 @@ pipeline {
         stage('Containerise') {
             steps {
                 script {
-                    dockerBuild.login()
-                    dockerBuild.build("tic-tac-toe")
-                    dockerBuild.push("tic-tac-toe")
+                    docker.withRegistry("https://index.docker.io/v1", "89b42c75-2ff6-4dea-9574-ec25ea4ff01f") {
+                        sh "commit=${env.GIT_COMMIT} serviceName=tic-tac-toe docker-compose build"
+                        // docker.build("${DOCKER_REGISTRY_NAMESPACE}/${appName}:${env.GIT_COMMIT}", 'app')
+                    }
+                    // dockerBuild.build("tic-tac-toe")
+                    // dockerBuild.push("tic-tac-toe")
                 }
             }
         }
