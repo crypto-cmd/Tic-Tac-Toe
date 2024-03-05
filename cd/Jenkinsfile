@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("https://index.docker.io/v1", "89b42c75-2ff6-4dea-9574-ec25ea4ff01f") {
-                        sh "commit=${env.GIT_COMMIT} serviceName=tic-tac-toe docker-compose build"
+                        sh "commit=${env.GIT_COMMIT} serviceName=tic-tac-toe docker compose build"
                         // docker.build("${DOCKER_REGISTRY_NAMESPACE}/${appName}:${env.GIT_COMMIT}", 'app')
                     }
                     // dockerBuild.build("tic-tac-toe")
